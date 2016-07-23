@@ -45,13 +45,13 @@ module Enumerable
     count
   end
 
-  def my_map
+  def my_map(some_proc=2, *block)
     a = []
-  #  if some_proc.class == false
-  #    self.my_each{|i| a << some_proc.call}
- #   else
+    if some_proc.class == Proc
+      self.my_each{|i| a << some_proc.call(i)}
+    else
       self.my_each{|i| a <<  yield(i)}
- #   end
+    end
     a
   end
 
